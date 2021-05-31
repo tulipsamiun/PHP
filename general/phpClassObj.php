@@ -17,7 +17,7 @@ class Fruit {
   }
 }
 class Fruits {
-	public $name;
+    public $name;
     public $color;
     function set_name($name){
     	$this->name = $name;
