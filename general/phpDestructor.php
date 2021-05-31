@@ -3,12 +3,12 @@
 
 <?php
 class Fruits {
-	  public $name;
+    public $name;
     public $color;
     public $flv;
     
     function __construct($name, $color,  $flv){
-    	  $this->name = $name;
+    	$this->name = $name;
         $this->color = $color;
         $this->flv = $flv;
     }
