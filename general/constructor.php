@@ -3,7 +3,7 @@
 
 <?php
 class Fruits {
-	public $name;
+    public $name;
     public $color;
     public $flv;
     
@@ -22,7 +22,7 @@ class Fruits {
     	return $this->flv;
     } 
 }
-$orange = new Fruits("Apple","Red","Fine");
+$orange = new Fruits("Orange","Red","Fine");
 echo $orange->get_name();
 echo "<br>";
 echo $orange ->get_color();
