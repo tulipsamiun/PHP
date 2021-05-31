@@ -45,7 +45,7 @@ echo $mango->get_name();
 echo "<br>";
 var_dump($orange instanceof Fruits);
 echo "<br>";
-var_dump($oqange instanceof Frout)
+var_dump($oqange instanceof Fruit)
 ?>
  
 </body>
