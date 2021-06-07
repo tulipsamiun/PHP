@@ -1,0 +1,71 @@
+<html>
+<head>
+<title>PHP Form example</title>
+<style>
+.error {
+	color : #FF0000;
+}
+</style>
+</head>
+<body>
+<?php
+$user_name = $email = $gender = $address = $nameError = $emailError = $genError = "" ;
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+	if(empty($_POST["user_name"])){
+		$nameError = "Name is required";
+	} else{
+		$user_name = validate($_POST["user_name"]);
+		if(!preg_match("/^[a-zA-Z-' ]*$/",$user_name)) {
+			$nameError = "Only charecters and spaces are allowed";
+		}
+	}
+	if(empty($_POST["email"])){
+		$emailError ="E-mail is required";
+	} else{
+		$email = validate($_POST["email"]);
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			$emailError = "Invalid email format";
+		}
+	}
+	if(empty($_POST["gender"])){
+		$genError = "Gender is required";	
+	} else {
+	
+		$gender = validate($_POST["gender"]);
+	}
+	$address = validate($_POST["address"]);
+
+}
+
+function validate($data){
+	$data = trim($data);
+	$data = stripslashes($data);
+	$data = htmlspecialchars($data);
+	return $data;
+}
+?>                       
+<form method= "post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+<h1>Fill Up The Form</h1>
+Name: <input type="text" name ="user_name" id ="user_name" value = "<?php echo $user_name;?>">
+<span class="error">* <?php echo $nameError;?></span>
+<br><br>
+E-mail: <input type ="text" name = "email" id="email" value="<?php echo $email?>">
+<span class = "error">* <?php echo  $emailError;?></span>
+<br><br>
+Gender: <input type="radio" name="gender" id="gender" <?php if (isset($gender) && $gender ==  "female") echo "checked";  ?> value ="female">Female
+<input type="radio" name="gender" id="gender" <?php if (isset($gender) && $gender == "male") echo "checked";?> value ="male">Male
+<input type="radio" name="gender" id="gender" <?php if (isset($gender) && $gender == "other") echo "checked";?> value ="other">Other
+<span class ="error">* <?php echo $genError;?></span>
+<br><br> 
+Address: <textarea name = "address" id= "address" rows="4" cols ="30" ><?php echo $address;?></textarea><br><br><br> 
+<input type ="submit" value = "Submit">
+
+</form>
+
+<?php echo $user_name . "-" . $email . "-";
+echo $gender . "-";
+echo $address;
+?>
+
+</body>
+</html>
